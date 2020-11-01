@@ -1,0 +1,11 @@
+.vscode/
+env/
+debug
+csv
+data/
+backtest-results/
+*.pyc
+*.pickle
+*.pkl
+*.html
+*.ipynb
