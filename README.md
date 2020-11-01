@@ -1,6 +1,7 @@
 ### TODOs
 
-1. Create test file
+1. Intiate all the constats
+2. Create all the aruguments for cli
 
 # main.py
 
