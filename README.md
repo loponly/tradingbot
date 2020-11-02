@@ -27,4 +27,8 @@
         exhcange - > Need to implment main Exchange class
     data
         convert
+        history
+            idatahandler
     misc
+    configuration
+        TimeRange
