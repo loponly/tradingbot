@@ -10,3 +10,4 @@ backtest-results/
 *.pkl
 *.html
 *.ipynb
+*.log

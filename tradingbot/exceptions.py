@@ -71,7 +71,7 @@ class DDosProtection(TemporaryError):
     """
 
 
-class StrategyError(FreqtradeException):
+class StrategyError(TradingbotException):
     """
     Errors with custom user-code deteced.
     Usually caused by errors in the strategy.
