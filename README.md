@@ -6,12 +6,25 @@
 # main.py
 
     commands
-        Arguments
-            cli_options
-            constants
-                DEFAULT_CONFIG
+        arguments
+            * need to be continue
+        cli_options
+    constants
+
     exceptions
         FreqtradeException
         OperationalException
+        DDosProtection
+        RetryableOrderError
+        TemporaryError
+        ExchangeError
+        InsufficientFundsError
+        InvalidOrderException
     loggers
         setup_logging_pre
+    exchange
+        common
+        exhcange
+    data
+        convert
+    misc
