@@ -11,7 +11,7 @@
         cli_options
     constants
 
-    exceptions
+    exceptions -> Done
         FreqtradeException
         OperationalException
         DDosProtection
@@ -20,7 +20,7 @@
         ExchangeError
         InsufficientFundsError
         InvalidOrderException
-    loggers
+    loggers -> Done
         setup_logging_pre
     exchange
         common
@@ -29,6 +29,6 @@
         convert
         history
             idatahandler
-    misc
+    misc -> Done
     configuration
-        TimeRange
+        TimeRange ->Done
