@@ -232,5 +232,54 @@ def convert_trades_format(config: Dict[str, Any], convert_from: str, convert_to:
     :param convert_to: Target format
     :param erase: Erase souce data (does not apply if source and target format are identical)
     """
-    pass
+    from tradingbot.data.history.idatahandler import get_datahandler
+    src = get_datahandler(config['datadir'],convert_from)
+    trg = get_datahandler(config['datadir'],convert_to)
 
+    if 'pairs' not in config:
+        config['pairs'] = src.trades_get_pairs(config['datadir'])
+    logger.info(f"Converting trades for {config['pairs']}")
+
+    for pair in config['pairs']:
+        data = src.trades_load(pair=pair)
+        logger.info(f"Converting {len(data)} trades for {pair}")
+        trg.trades_store(pair,data)
+        if erase and convert_from != convert_to:
+            logger.info(f"Deleting source Trade data for {pair}.")
+            src.trades_purge(pair=pair)
+
+def convert_ohlcv_format(config: Dict[str, Any], convert_from: str, convert_to: str, erase: bool):
+    """
+    Convert OHLCV from one format to another
+    :param config: Config dictionary
+    :param convert_from: Source format
+    :param convert_to: Target format
+    :param erase: Erase souce data (does not apply if source and target format are identical)
+    """
+    from tradingbot.data.history.idatahandler import get_datahandler
+    src = get_datahandler(config['datadir'], convert_from)
+    trg = get_datahandler(config['datadir'], convert_to)
+    timeframes = config.get('timeframes', [config.get('timeframe')])
+    logger.info(f"Converting candle (OHLCV) for timeframe {timeframes}")
+
+    if 'pairs' not in config:
+        config['pairs'] = []
+        # Check timeframes or fall back to timeframe.
+        for timeframe in timeframes:
+            config['pairs'].extend(src.ohlcv_get_pairs(config['datadir'],
+                                                       timeframe))
+    logger.info(f"Converting candle (OHLCV) data for {config['pairs']}")
+
+    for timeframe in timeframes:
+        for pair in config['pairs']:
+            data = src.ohlcv_load(pair=pair, timeframe=timeframe,
+                                  timerange=None,
+                                  fill_missing=False,
+                                  drop_incomplete=False,
+                                  startup_candles=0)
+            logger.info(f"Converting {len(data)} candles for {pair}")
+            if len(data) > 0:
+                trg.ohlcv_store(pair=pair, timeframe=timeframe, data=data)
+                if erase and convert_from != convert_to:
+                    logger.info(f"Deleting source data for {pair} / {timeframe}")
+                    src.ohlcv_purge(pair=pair, timeframe=timeframe)
