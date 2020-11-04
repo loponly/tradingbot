@@ -3,7 +3,6 @@ env/
 debug
 csv
 __pycache__/
-data/
 backtest-results/
 *.pyc
 *.pickle
