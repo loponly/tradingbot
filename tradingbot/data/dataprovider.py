@@ -11,11 +11,11 @@ from typing import Any, Dict, List, Optional, Tuple
 from arrow import Arrow
 from pandas import DataFrame
 
-from freqtrade.constants import ListPairsWithTimeframes, PairWithTimeframe
-from freqtrade.data.history import load_pair_history
-from freqtrade.exceptions import ExchangeError, OperationalException
-from freqtrade.exchange import Exchange
-from freqtrade.state import RunMode
+from tradingbot.constants import ListPairsWithTimeframes, PairWithTimeframe
+from tradingbot.data.history import load_pair_history
+from tradingbot.exceptions import ExchangeError, OperationalException
+from tradingbot.exchange import Exchange
+from tradingbot.state import RunMode
 
 logger = logging.getLogger(__name__)
 
