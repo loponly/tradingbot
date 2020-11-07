@@ -1,6 +1,6 @@
 # isort: off
 from tradingbot.exchange.common import MAP_EXCHANGE_CHILDCLASS
-
+from freqtrade.exchange.exchange import Exchange
 # isort: on
 from tradingbot.exchange.exchange import (
     available_exchanges, ccxt_exchanges, get_exchange_bad_reason,
